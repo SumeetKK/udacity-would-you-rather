@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container, Col } from 'reactstrap'
+import LeaderboardItem from './LeaderboardItem'
 
 class Leaderboard extends Component {
     render() {
-        const {topUsers} = this.props
+        const {topUsers, users} = this.props
         return (
             <div>
                 <Container>
                 <Col md={{size: 8, offset: 2}}>
                     <ul>
                         {topUsers.map((userId) => (
-                            <li key={userId}>
-                                {userId}
-                            </li>
+                            <LeaderboardItem user={users[userId]} />
                         ))}
                     </ul>
                 </Col>
@@ -33,6 +32,7 @@ function mapStateToProps({users}) {
     
     return {
         topUsers,
+        users,
     }
 }
 
