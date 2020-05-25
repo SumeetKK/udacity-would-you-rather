@@ -25,7 +25,7 @@ class ViewQuestion extends Component{
 
     
     render(){
-        const {question, authedUser, id} = this.props
+        const {question, authedUser} = this.props
         const answerOne = question.optionOne.votes.includes(authedUser)
         const answerTwo = question.optionTwo.votes.includes(authedUser)
         const alreadyAnswered = ( answerOne || answerTwo)
