@@ -53,7 +53,9 @@ class ViewQuestion extends Component{
                                             <Button block color="success" outline={!answerOne}>
                                                 {answerOne && (<Badge href="#" color="warning" className='float-right' style={{borderRadius: '200px', padding: '8px', marginRight: '-35px', marginTop: '-25px'}}>Your<br />Vote</Badge>)}
                                                 Would You Rather {question.optionOne.text}
-                                                <Progress striped  color="primary" value={(question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100 } />
+                                                <Progress striped  color="primary" value={(question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100 }>
+                                                    {(question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100 }%
+                                                </Progress>
                                                 <CardText>{question.optionOne.votes.length} out of {(question.optionOne.votes.length + question.optionTwo.votes.length)} Votes </CardText>
 
                                             </Button>
@@ -62,7 +64,9 @@ class ViewQuestion extends Component{
                                             <Button block color="success" outline={!answerTwo} className="my-4">
                                                 {answerTwo && (<Badge href="#" color="warning" className='float-right' style={{borderRadius: '200px', padding: '8px', marginRight: '-35px', marginTop: '-25px'}}>Your<br />Vote</Badge>)}
                                                 Would You Rather {question.optionTwo.text}
-                                                <Progress striped  color="warning"  value={question.optionTwo.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length) * 100 } />
+                                                <Progress striped  color="warning"  value={question.optionTwo.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length) * 100 } >
+                                                    {(question.optionTwo.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100 }%
+                                                </Progress>
                                                 <CardText>{question.optionTwo.votes.length} out of {(question.optionOne.votes.length + question.optionTwo.votes.length)} Votes </CardText>
                                             </Button>
                                         </div>
