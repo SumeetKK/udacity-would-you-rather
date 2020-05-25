@@ -20,7 +20,6 @@ class ViewQuestion extends Component{
     }
 
     handleChange = (e) => {
-        e.preventDefault();
         this.setState({selected: e.target.value})
     }
 
@@ -86,19 +85,19 @@ class ViewQuestion extends Component{
                                             <CardTitle><strong>Would You Rather</strong></CardTitle>
                                             <FormGroup tag="fieldset">
                                                 <FormGroup check>
-                                                    <Label check>
-                                                        <Input type="radio" name="options" onChange={this.handleChange} value='optionOne' />{' '}
+                                                    <Label check id='optionOne'>
+                                                        <Input required type="radio" name="options" id="optionOne" onChange={this.handleChange} value='optionOne' />{' '}
                                                         {this.props.question.optionOne.text}
                                                     </Label>
                                                 </FormGroup>
                                                 <FormGroup check>
-                                                    <Label check>
-                                                        <Input type="radio" name="options" onChange={this.handleChange} value='optionTwo'/>{' '}
+                                                    <Label check for='optionTwo'>
+                                                        <Input required type="radio" name="options" id="optionTwo" onChange={this.handleChange} value='optionTwo'/>{' '}
                                                         {this.props.question.optionTwo.text}
                                                     </Label>
                                                 </FormGroup>
                                             </FormGroup>
-                                            <Button color='success' block>Submit</Button>
+                                            <Button color='success' block disabled={this.state.selected === null}>Submit</Button>
                                         </form>
                                     </Col>
                                 </Row>
