@@ -1,37 +1,30 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Container, Row, Col, Button} from 'reactstrap';
+import ListQuestion from './ListQuestion'
 
 class Home extends Component {
   render() {
     return (
       <Container>
         <Row>
-            <Col sm='6'>
+            <Col md={{size: 4, offset: 2}}>
                 <Button color='primary' block>UnAnswered Questions</Button>
             </Col>
-            <Col sm='6'>
+            <Col md='4'>
                 <Button outline color='primary' block>Answered Questions</Button>
             </Col>
         </Row>
         <Row>
-            <Col sm='12'>
+            <Col md={{size: 8, offset: 2}}>
                 <h3>Unanswered</h3>
-                <ul>
                     {this.props.unAnswered.map((id) => (
-                            <li key={id}>
-                                {id}
-                            </li>
+                            <ListQuestion key={id} id={id} />
                     ))}
-                </ul>
                 <h3>Answered</h3>
-                <ul>
                     {this.props.answered.map((id) => (
-                        <li key={id}>
-                            {id}
-                        </li>
+                        <ListQuestion key={id} id={id} />
                     ))}
-                </ul>
             </Col>
         </Row>
       </Container>
