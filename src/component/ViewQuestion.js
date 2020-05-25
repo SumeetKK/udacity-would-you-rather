@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {Container, Card, CardHeader, CardBody, Button, Row, Col, CardTitle, CardText, FormGroup, Label, Input, Badge, Progress } from 'reactstrap'
 import { connect } from 'react-redux'
-import { handleAnswer } from '../actions/shared';
+import { handleAnswer } from '../actions/shared'
+import Error404 from './Error404'
 
 
 class ViewQuestion extends Component{
@@ -25,6 +26,12 @@ class ViewQuestion extends Component{
 
     
     render(){
+        if(this.props.error404) {
+            return (
+                <Error404 />
+            )
+        }
+
         const {question, authedUser} = this.props
         const answerOne = question.optionOne.votes.includes(authedUser)
         const answerTwo = question.optionTwo.votes.includes(authedUser)
@@ -100,9 +107,16 @@ class ViewQuestion extends Component{
 
 function mapStateToProps({questions, users, authedUser}, props)
 {
-
     const {id} = props.match.params 
     const questionId = id
+    if(questions[questionId] === undefined) {
+        const error404 = true;
+        return {
+            error404
+        }
+    }
+
+
     return {
         question: questions[questionId],
         user: users[questions[questionId].author],
