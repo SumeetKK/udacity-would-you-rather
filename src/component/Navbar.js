@@ -28,7 +28,7 @@ class NavBar extends Component {
     render() {
         return (
                 <Navbar color="dark" dark expand="md">
-                <NavbarBrand href="/">Would You Rather</NavbarBrand>
+                <NavbarBrand>Would You Rather</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.isOpen} navbar>
                         <Nav className="mr-auto" navbar>

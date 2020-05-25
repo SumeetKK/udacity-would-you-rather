@@ -4,7 +4,7 @@ import { setAuthedUser } from './authedUser'
 import { _getQuestions, _getUsers, _saveQuestionAnswer, _saveQuestion } from '../data/_DATA'
 
 
-const AUTHED_ID = 'sarahedo'
+const AUTHED_ID = null
 
 function getInitialData () {
   return Promise.all([
