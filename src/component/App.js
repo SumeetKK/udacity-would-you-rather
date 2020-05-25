@@ -16,7 +16,6 @@ class App extends Component{
     }
 
     render(){
-        console.log("Login:", this.props.login)
         return (
             <div>
                 {this.props.login === true

@@ -103,7 +103,6 @@ function mapStateToProps({questions, users, authedUser}, props)
 
     const {id} = props.match.params 
     const questionId = id
-    console.log('users: ', users)
     return {
         question: questions[questionId],
         user: users[questions[questionId].author],

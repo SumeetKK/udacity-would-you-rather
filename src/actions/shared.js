@@ -50,7 +50,6 @@ export function handleQuestion(author, optionOneText, optionTwoText){
   }
   return (dispatch) => {
     return _saveQuestion(question).then((ques) => {
-      console.log('Ques:', ques)
       dispatch(saveQuestion(ques))
       dispatch(UserQuestion(ques.author, ques.id))
     })
