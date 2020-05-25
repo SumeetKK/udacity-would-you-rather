@@ -16,20 +16,22 @@ class App extends Component{
     }
 
     render(){
+        const login = this.props.login;
         return (
-            <div>
+            <Router>
                 {this.props.login === true
-                    ? <Login />
+                    ? (<Fragment>
+                        <NavBar login={login} />
+                        <Login />
+                    </Fragment>)
                     : (<Fragment>
-                        <Router>            
                             <NavBar />
                             <Route exact path="/" component={ Home }/> 
                             <Route exact path="/questions/:question_id" component={ ViewQuestion }/>
                             <Route exact path="/add" component={ NewQuestion }/>
-                            <Route exact path="/leaderboard" component={ Leaderboard }/>
-                        </Router>            
+                            <Route exact path="/leaderboard" component={ Leaderboard }/>            
                     </Fragment>)}
-            </div>
+            </Router>
         )
     }
 }

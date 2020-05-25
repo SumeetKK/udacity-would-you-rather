@@ -42,12 +42,13 @@ class NavBar extends Component {
                                 <NavLink tag={RRLink} to="/leaderboard">Leaderboard</NavLink>
                             </NavItem>
                         </Nav>
+                        {(!this.props.login) && (
                         <Nav className='ml-auto' navbar>
                             <NavbarText className='mx-2 text-info'>Hello, {this.props.user.name}</NavbarText>
                             <NavItem >
                                 <NavLink className='btn btn-warning text-dark px-2' onClick={this.logout}>Logout</NavLink>
                             </NavItem>
-                        </Nav>      
+                        </Nav>)}
                 </Collapse>
             </Navbar>
         )

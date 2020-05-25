@@ -20,7 +20,7 @@ class Home extends Component {
       <Container>
         <Row>
             <Col md={{size: 8, offset: 2}}>
-                <Nav tabs className='nav-justified'>
+                <Nav tabs className='nav-justified my-2'>
                     <NavItem>
                         <NavLink active={this.state.activeTab === unanswered } onClick={() => { this.toggle(unanswered); }}>
                             Unanswered
