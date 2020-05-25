@@ -24,8 +24,8 @@ class App extends Component{
                         <Router>            
                             <NavBar />
                             <Route exact path="/" component={ Home }/> 
-                            <Route exact path="/questions/:id" component={ ViewQuestion }/>
-                            <Route exact path="/new" component={ NewQuestion }/>
+                            <Route exact path="/questions/:question_id" component={ ViewQuestion }/>
+                            <Route exact path="/add" component={ NewQuestion }/>
                             <Route exact path="/leaderboard" component={ Leaderboard }/>
                         </Router>            
                     </Fragment>)}

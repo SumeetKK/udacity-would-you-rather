@@ -36,7 +36,7 @@ class NavBar extends Component {
                                 <NavLink tag={RRLink} to="/">Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={RRLink} to="/new">New Question</NavLink>
+                                <NavLink tag={RRLink} to="/add">New Question</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink tag={RRLink} to="/leaderboard">Leaderboard</NavLink>

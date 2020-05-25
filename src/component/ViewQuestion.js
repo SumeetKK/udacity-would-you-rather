@@ -36,7 +36,7 @@ class ViewQuestion extends Component{
         const answerOne = question.optionOne.votes.includes(authedUser)
         const answerTwo = question.optionTwo.votes.includes(authedUser)
         const alreadyAnswered = ( answerOne || answerTwo)
-        
+
         return (<Container>
                 <Col md={{size: 8, offset: 2}}>
                     {(alreadyAnswered) 
@@ -107,8 +107,8 @@ class ViewQuestion extends Component{
 
 function mapStateToProps({questions, users, authedUser}, props)
 {
-    const {id} = props.match.params 
-    const questionId = id
+    const {question_id} = props.match.params 
+    const questionId = question_id
     if(questions[questionId] === undefined) {
         const error404 = true;
         return {
