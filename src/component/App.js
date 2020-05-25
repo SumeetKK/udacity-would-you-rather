@@ -8,6 +8,7 @@ import ViewQuestion from './ViewQuestion'
 import NewQuestion from './NewQuestion'
 import Leaderboard from './Leaderboard'
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import LoadingBar from 'react-redux-loading'
 
 class App extends Component{
 
@@ -19,6 +20,7 @@ class App extends Component{
         const login = this.props.login;
         return (
             <Router>
+                <LoadingBar />
                 {this.props.login === true
                     ? (<Fragment>
                         <NavBar login={login} />
@@ -38,7 +40,7 @@ class App extends Component{
 
 function mapStateToProps ({ authedUser }) {
     return {
-      login: authedUser === null
+      login: authedUser === null,
     }
   }
 

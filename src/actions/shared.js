@@ -2,6 +2,7 @@ import { receiveUsers, saveAnswer as UserAnswer, saveQuestion as UserQuestion } 
 import { receiveQuestions, saveAnswer as QuestionAnswer, saveQuestion } from './questions'
 import { setAuthedUser } from './authedUser'
 import { _getQuestions, _getUsers, _saveQuestionAnswer, _saveQuestion } from '../data/_DATA'
+import { showLoading, hideLoading } from 'react-redux-loading'
 
 
 const AUTHED_ID = null
@@ -20,11 +21,13 @@ function getInitialData () {
 
 export function handleInitialData() {
   return (dispatch) => {
+      dispatch(showLoading())
       return getInitialData().then(
           ({users, questions}) => {
               dispatch(receiveUsers(users))
               dispatch(receiveQuestions(questions))
               dispatch(setAuthedUser(AUTHED_ID))
+              dispatch(hideLoading())
       })
   }
 }
