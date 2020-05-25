@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 class ListQuestion extends Component{
 
     render(){
-        console.log(this.props.user.avatarURL)
         return (<Card className="my-2">
             <CardHeader style={{fontWeight: '500'}}>{this.props.user.name} Asks:</CardHeader>
             <CardBody>

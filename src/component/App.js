@@ -3,6 +3,7 @@ import { connect } from  'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Login from './Login'
 import Home from './Home'
+import ViewQuestion from './ViewQuestion'
 
 class App extends Component{
 
@@ -11,11 +12,12 @@ class App extends Component{
     }
 
     render(){
+        console.log("Login:", this.props.login)
         return (
             <div>
-                {this.props.loading === true
+                {this.props.login === true
                     ? <Login />
-                    : <Home />}
+                    : <ViewQuestion />}
             </div>
         )
     }
@@ -23,7 +25,7 @@ class App extends Component{
 
 function mapStateToProps ({ authedUser }) {
     return {
-      loading: authedUser === null
+      login: authedUser === null
     }
   }
 
