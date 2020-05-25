@@ -1,7 +1,8 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import { connect } from  'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Login from './Login'
+import NavBar from './Navbar'
 import Home from './Home'
 import ViewQuestion from './ViewQuestion'
 
@@ -17,7 +18,10 @@ class App extends Component{
             <div>
                 {this.props.login === true
                     ? <Login />
-                    : <ViewQuestion />}
+                    : (<Fragment>
+                        <NavBar />
+                        <ViewQuestion />
+                    </Fragment>)}
             </div>
         )
     }
