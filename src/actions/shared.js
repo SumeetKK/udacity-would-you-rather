@@ -4,7 +4,7 @@ import { setAuthedUser } from './authedUser'
 import { _getQuestions, _getUsers } from '../data/_DATA'
 
 
-const AUTHED_ID = null
+const AUTHED_ID = 'sarahedo'
 
 function getInitialData () {
     return Promise.all([
@@ -22,9 +22,9 @@ export function handleInitialData() {
     return (dispatch) => {
         return getInitialData().then(
             ({users, questions}) => {
+                dispatch(setAuthedUser(AUTHED_ID))
                 dispatch(receiveUsers(users))
                 dispatch(receiveQuestions(questions))
-                dispatch(setAuthedUser(AUTHED_ID))
         })
     }
 }
