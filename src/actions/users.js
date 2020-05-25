@@ -1,5 +1,5 @@
 export const RECEIVE_USERS = 'RECEIVE_USERS'
-export const SAVE_ANSWER = 'SAVE_ANSWER'
+export const SAVE_ANSWER = 'SAVE_ANSWERS'
 export const SAVE_QUESTION = 'SAVE_QUESTION'
 
 export function receiveUsers(users){
