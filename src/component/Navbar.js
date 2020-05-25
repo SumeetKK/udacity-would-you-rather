@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
-import {BrowserRouter as Router, NavLink as RRLink} from 'react-router-dom';
+import {NavLink as RRLink} from 'react-router-dom';
 import { Navbar, NavbarBrand, Collapse, Nav, NavItem, NavLink, NavbarToggler, NavbarText } from 'reactstrap'
 
 class NavBar extends Component {
@@ -31,16 +31,15 @@ class NavBar extends Component {
                 <NavbarBrand href="/">Would You Rather</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.isOpen} navbar>
-                    <Router>
                         <Nav className="mr-auto" navbar>
                             <NavItem>
-                                <NavLink tag={RRLink} to="#">Home</NavLink>
+                                <NavLink tag={RRLink} to="/">Home</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={RRLink} to="#">New Question</NavLink>
+                                <NavLink tag={RRLink} to="/new">New Question</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={RRLink} to="#">Leaderboard</NavLink>
+                                <NavLink tag={RRLink} to="/leaderboard">Leaderboard</NavLink>
                             </NavItem>
                         </Nav>
                         <Nav className='ml-auto' navbar>
@@ -49,7 +48,6 @@ class NavBar extends Component {
                                 <NavLink className='btn btn-warning text-dark px-2' onClick={this.logout}>Logout</NavLink>
                             </NavItem>
                         </Nav>      
-                    </Router>            
                 </Collapse>
             </Navbar>
         )

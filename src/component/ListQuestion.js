@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import {Card, CardHeader, CardBody, Button, Row, Col, CardTitle, CardText} from 'reactstrap'
 import { connect } from 'react-redux'
 
@@ -15,7 +16,7 @@ class ListQuestion extends Component{
                     <Col xs='8'>
                         <CardTitle><strong>Would You Rather</strong></CardTitle>
                         <CardText>...{this.props.question.optionOne.text.substr(0,25)}...</CardText>
-                        <Button outline color='success' block>View Poll</Button>
+                        <Button tag={Link} to={`/questions/${this.props.question.id}`} outline color='success' block>View Poll</Button>
                     </Col>
                 </Row>
             </CardBody>

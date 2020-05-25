@@ -6,7 +6,7 @@ import { handleAnswer } from '../actions/shared';
 
 class ViewQuestion extends Component{
 
-
+    
     state = {
         selected: null,
     }
@@ -25,7 +25,7 @@ class ViewQuestion extends Component{
 
     
     render(){
-        const {question, authedUser} = this.props
+        const {question, authedUser, id} = this.props
         const answerOne = question.optionOne.votes.includes(authedUser)
         const answerTwo = question.optionTwo.votes.includes(authedUser)
         const alreadyAnswered = ( answerOne || answerTwo)
@@ -44,7 +44,7 @@ class ViewQuestion extends Component{
                                         <CardText>Results:</CardText>
                                         <div className='px-1'>
                                             <Button block color="success" outline={!answerOne}>
-                                                {answerOne && (<Badge href="#" color="warning" style={{borderRadius: '100px'}}>Your<br />Vote</Badge>)}
+                                                {answerOne && (<Badge href="#" color="warning" className='float-right' style={{borderRadius: '200px', padding: '8px', marginRight: '-35px', marginTop: '-25px'}}>Your<br />Vote</Badge>)}
                                                 Would You Rather {question.optionOne.text}
                                                 <Progress striped  color="primary" value={(question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100 } />
                                                 <CardText>{question.optionOne.votes.length} out of {(question.optionOne.votes.length + question.optionTwo.votes.length)} Votes </CardText>
@@ -98,9 +98,11 @@ class ViewQuestion extends Component{
     }
 }
 
-function mapStateToProps({questions, users, authedUser})
+function mapStateToProps({questions, users, authedUser}, props)
 {
-    const questionId = '6ni6ok3ym7mf1p33lnez'
+
+    const {id} = props.match.params 
+    const questionId = id
     console.log('users: ', users)
     return {
         question: questions[questionId],

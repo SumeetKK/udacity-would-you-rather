@@ -5,6 +5,7 @@ import Login from './Login'
 import NavBar from './Navbar'
 import Home from './Home'
 import ViewQuestion from './ViewQuestion'
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 class App extends Component{
 
@@ -19,8 +20,11 @@ class App extends Component{
                 {this.props.login === true
                     ? <Login />
                     : (<Fragment>
-                        <NavBar />
-                        <ViewQuestion />
+                        <Router>            
+                            <NavBar />
+                            <Route exact path="/" component={ Home }/> 
+                            <Route exact path="/questions/:id" component={ ViewQuestion }/>
+                        </Router>            
                     </Fragment>)}
             </div>
         )
