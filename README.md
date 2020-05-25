@@ -1,4 +1,4 @@
-# Would You Rather - Udacity's React Fundamentals Course Project
+# Would You Rather
 
 This is final assignment of Udacity's React Fundamentals course. In this assignment, we were asked to built a front-end functionality of a project using _**React JS**_ and _**Redux**_. API, Functions necessary to call API, and basic styling was already provided by Udacity.
 

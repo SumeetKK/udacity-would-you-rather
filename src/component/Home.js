@@ -5,7 +5,7 @@ import ListQuestion from './ListQuestion'
 
 class Home extends Component {
 
-    state = { activeTab: 'answered' }
+    state = { activeTab: 'unanswered' }
     
       toggle(tab) {
         if (this.state.activeTab !== tab) {
@@ -22,13 +22,13 @@ class Home extends Component {
             <Col md={{size: 8, offset: 2}}>
                 <Nav tabs className='nav-justified'>
                     <NavItem>
-                        <NavLink active={this.state.activeTab === answered } onClick={() => { this.toggle(answered); }}>
-                            Answered
+                        <NavLink active={this.state.activeTab === unanswered } onClick={() => { this.toggle(unanswered); }}>
+                            Unanswered
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink active={this.state.activeTab === unanswered } onClick={() => { this.toggle(unanswered); }}>
-                            Unanswered
+                        <NavLink active={this.state.activeTab === answered } onClick={() => { this.toggle(answered); }}>
+                            Answered
                         </NavLink>
                     </NavItem>
                 </Nav>
@@ -37,15 +37,15 @@ class Home extends Component {
         <Row>
             <Col md={{size: 8, offset: 2}}>
                 <TabContent activeTab={this.state.activeTab}>
-                    <TabPane tabId={answered}>
-                        { this.state.activeTab === answered
-                            && this.props.answered.map((id) => (
-                                <ListQuestion key={id} id={id} />
-                            ))}
-                    </TabPane>
                     <TabPane tabId={unanswered}>
                         { this.state.activeTab === unanswered
                             && this.props.unAnswered.map((id) => (
+                                <ListQuestion key={id} id={id} />
+                            ))}
+                    </TabPane>
+                    <TabPane tabId={answered}>
+                        { this.state.activeTab === answered
+                            && this.props.answered.map((id) => (
                                 <ListQuestion key={id} id={id} />
                             ))}
                     </TabPane>
