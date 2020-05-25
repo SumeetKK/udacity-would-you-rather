@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
-import {Container, Card, CardHeader, CardBody, Button, Row, Col, CardTitle} from 'reactstrap'
+import {Container, Card, CardHeader, CardBody, Button, Row, Col, CardTitle, CardText, FormGroup, Label, Input, Badge, Progress } from 'reactstrap'
 import { connect } from 'react-redux'
-import { FormGroup, Label, Input } from 'reactstrap'
 import { handleAnswer } from '../actions/shared';
 
 
@@ -27,17 +26,49 @@ class ViewQuestion extends Component{
     
     render(){
         const {question, authedUser} = this.props
-        const alreadyAnswered = (question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser))
+        const answerOne = question.optionOne.votes.includes(authedUser)
+        const answerTwo = question.optionTwo.votes.includes(authedUser)
+        const alreadyAnswered = ( answerOne || answerTwo)
+        
         return (<Container>
                 <Col md={{size: 8, offset: 2}}>
                     {(alreadyAnswered) 
-                        ? "Already Answered"
+                        ? (<Card className="my-2">
+                            <CardHeader style={{fontWeight: '500'}}>Asked By {this.props.user.name}</CardHeader>
+                            <CardBody>
+                                <Row>
+                                    <Col xs='4' className='d-flex flex-wrap align-items-center'>
+                                        <img src={this.props.user.avatarURL} style={{maxHeight: '120px', width: 'auto'}} className='img-fluid mx-auto' alt="Avatar for Person" />
+                                    </Col>
+                                    <Col xs='8'>
+                                        <CardText>Results:</CardText>
+                                        <div className='px-1'>
+                                            <Button block color="success" outline={!answerOne}>
+                                                {answerOne && (<Badge href="#" color="warning" style={{borderRadius: '100px'}}>Your<br />Vote</Badge>)}
+                                                Would You Rather {question.optionOne.text}
+                                                <Progress striped  color="primary" value={(question.optionOne.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length)) * 100 } />
+                                                <CardText>{question.optionOne.votes.length} out of {(question.optionOne.votes.length + question.optionTwo.votes.length)} Votes </CardText>
+
+                                            </Button>
+                                        </div>
+                                        <div className='px-1'>
+                                            <Button block color="success" outline={!answerTwo} className="my-4">
+                                                {answerTwo && (<Badge href="#" color="warning" className='float-right' style={{borderRadius: '200px', padding: '8px', marginRight: '-35px', marginTop: '-25px'}}>Your<br />Vote</Badge>)}
+                                                Would You Rather {question.optionTwo.text}
+                                                <Progress striped  color="warning"  value={question.optionTwo.votes.length / (question.optionOne.votes.length + question.optionTwo.votes.length) * 100 } />
+                                                <CardText>{question.optionTwo.votes.length} out of {(question.optionOne.votes.length + question.optionTwo.votes.length)} Votes </CardText>
+                                            </Button>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </CardBody>
+                        </Card>)
                         : <Card className="my-2">
                             <CardHeader style={{fontWeight: '500'}}>{this.props.user.name} Asks:</CardHeader>
                             <CardBody>
                                 <Row>
                                     <Col xs='4'>
-                                        <img src={this.props.user.avatarURL} style={{maxHeight: '120px', width: 'auto'}} className='img-fluid' alt="Avatar for Person" />
+                                        <img src={this.props.user.avatarURL} style={{maxHeight: '120px', width: 'auto'}} className='img-fluid my-auto' alt="Avatar for Person" />
                                     </Col>
                                         <Col xs='8'>
                                             <form onSubmit={this.handleSubmit} >
@@ -69,7 +100,7 @@ class ViewQuestion extends Component{
 
 function mapStateToProps({questions, users, authedUser})
 {
-    const questionId = 'xj352vofupe1dqz9emx13r'
+    const questionId = '6ni6ok3ym7mf1p33lnez'
     console.log('users: ', users)
     return {
         question: questions[questionId],
