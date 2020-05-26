@@ -9,26 +9,49 @@ class QuestionForm extends Component {
     state = {
         optionOne: null,
         optionTwo: null,
-        toHome: false
+        toHome: false,
+        stopSubmit: true,
+    }
+
+    handleEdgeCases = () => {
+        if(this.state.optionOne !== null && this.state.optionTwo !== null){
+            (this.state.optionOne !== this.state.optionTwo)
+            ? this.setState({ stopSubmit: false })
+            : this.setState({ stopSubmit: true })
+        }
+        else{
+            this.setState({ stopSubmit: true })
+        }
+
+            
     }
 
     changeOptionOne = (e) => {
-        this.setState({
-            optionOne: e.target.value
+        this.setState({ optionOne: e.target.value}, () => { 
+            this.handleEdgeCases()
         })
     }
+
     changeOptionTwo = (e) => {
-        this.setState({
-            optionTwo: e.target.value
+        this.setState({ optionTwo: e.target.value}, () => { 
+            this.handleEdgeCases()
         })
+
     }
     handleSubmit = (e) => {
         e.preventDefault()
         const {authedUser, dispatch} = this.props
-        dispatch(handleQuestion(authedUser, this.state.optionOne, this.state.optionOne))
-        this.setState({
-            toHome: true
-        })
+        this.handleEdgeCases()
+        if(!this.state.stopSubmit){
+            dispatch(handleQuestion(authedUser, this.state.optionOne, this.state.optionOne))
+            this.setState({
+                toHome: true
+            })
+        }
+        else {
+            alert(`Options shouldn't be empty or same`)
+        }
+        
     }
     render() {
         if (this.state.toHome === true) {
@@ -43,7 +66,7 @@ class QuestionForm extends Component {
                             <Form onSubmit={this.handleSubmit}>
                                 <FormGroup>
                                     <Label for="OptionOne">Option One</Label>
-                                    <Input type="text" id="OptionOne" placeholder="Enter Option One Text Here"  onChange={this.changeOptionOne} />
+                                    <Input required type="text" id="OptionOne" placeholder="Enter Option One Text Here"  onChange={this.changeOptionOne} />
                                 </FormGroup> 
                                 <div style={{width: "100%", height: "1em", borderBottom: "1px solid #565656", textAlign: "center", marginBottom: '20px'}}>
                                     <span style={{fontWeight: '500', fontSize: '1.2em', backgroundColor: '#fff', padding:'0 10px', }}>
@@ -53,9 +76,9 @@ class QuestionForm extends Component {
             
                                 <FormGroup>
                                     <Label for="OptionTwo">Option Two</Label>
-                                    <Input type="text" id="OptionTwo" placeholder="Enter Option Two Text Here" onChange={this.changeOptionTwo} />
+                                    <Input required type="text" id="OptionTwo" placeholder="Enter Option Two Text Here" onChange={this.changeOptionTwo} />
                                 </FormGroup>
-                                <Button color='success' block type='submit'>Submit</Button> 
+                                <Button color='success' block type='submit' disabled={this.state.stopSubmit}>Submit</Button> 
                             </Form>
                         </CardBody>
                     </Card>
