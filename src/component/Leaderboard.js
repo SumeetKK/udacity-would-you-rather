@@ -12,7 +12,7 @@ class Leaderboard extends Component {
                 <Col md={{size: 8, offset: 2}}>
                     <ul>
                         {topUsers.map((userId) => (
-                            <LeaderboardItem user={users[userId]} />
+                            <LeaderboardItem user={users[userId]} key={userId} />
                         ))}
                     </ul>
                 </Col>
