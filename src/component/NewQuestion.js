@@ -43,7 +43,7 @@ class QuestionForm extends Component {
         const {authedUser, dispatch} = this.props
         this.handleEdgeCases()
         if(!this.state.stopSubmit){
-            dispatch(handleQuestion(authedUser, this.state.optionOne, this.state.optionOne))
+            dispatch(handleQuestion(authedUser, this.state.optionOne, this.state.optionTwo))
             this.setState({
                 toHome: true
             })
